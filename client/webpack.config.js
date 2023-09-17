@@ -17,11 +17,28 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      // Webpack plugin that generates our html file and injects our bundles. 
+      // Generate an HTML file and inject bundles
       new HtmlWebpackPlugin({
-        template: './index.html',
-        title: 'Contact Cards'
+        template: './src/index.html',
+        filename: 'index.html',
       }),
+
+      // Inject a service worker
+      new InjectManifest({
+        swSrc: './src-sw.js', // Path to service worker file
+        swDest: 'src-sw.js', // Output file for service worker
+      }),
+
+      // Generate a Manifest file
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: 'Text Editor',
+        short_name: 'TE',
+        description: 'Create and edit text content',
+        start_url: './',
+        publicPath: './',
+      })
     ],
 
     module: {
@@ -35,7 +52,7 @@ module.exports = () => {
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
-          // Babel-loader, necessary for ES6
+          // Babel-loader for ES6
           use: {
             loader: 'babel-loader',
             options: {
