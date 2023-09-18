@@ -3,8 +3,6 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-
 module.exports = () => {
   return {
     mode: 'development',
@@ -23,13 +21,13 @@ module.exports = () => {
         filename: 'index.html',
       }),
 
-      // Inject a service worker
+      // Inject service worker
       new InjectManifest({
         swSrc: './src-sw.js', // Path to service worker file
         swDest: 'src-sw.js', // Output file for service worker
       }),
 
-      // Generate a Manifest file
+      // Generate Manifest file
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
