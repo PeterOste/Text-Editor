@@ -1,0 +1,8 @@
+{
+  "name": "Text Editor",
+  "short_name": "TE",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "./",
+  "description": "Create and edit text content"
+}
