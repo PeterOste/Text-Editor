@@ -10,9 +10,9 @@ const initdb = async () =>
       db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
       console.log('jate database created');
     },
-  });
+});
 
-// TODO: Add logic to a method that accepts some content and adds it to the database
+// Put method
 export const putDb = async (content) => {
   console.log('Adding content to the database');
 
@@ -39,7 +39,7 @@ export const putDb = async (content) => {
   }
 };
 
-// TODO: Add logic for a method that gets all the content from the database
+// Get method
 export const getDb = async () => {
   console.log('GET from the database');
 
