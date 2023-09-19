@@ -36,6 +36,13 @@ module.exports = () => {
         description: 'Create and edit text content',
         start_url: './',
         publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
       })
     ],
 
@@ -59,6 +66,18 @@ module.exports = () => {
             },
           },
         },
+        // Asset loaders
+        // {
+        //   test: /\.(png|jpg|jpeg|gif|svg)$/,
+        //   use: [
+        //     {
+        //       loader: 'file-loader',
+        //       options: {
+        //         name: 'assets/[name].[ext]', // Output path and filename
+        //       },
+        //     },
+        //   ],
+        // },
       ],
     },
   };
