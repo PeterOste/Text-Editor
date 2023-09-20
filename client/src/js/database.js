@@ -26,6 +26,11 @@ export const putDb = async (content) => {
   const store = tx.objectStore('jate');
 
   try {
+    // Remove 'id' property if it exists
+    if ('id' in content) {
+      delete content.id;
+    }
+
     // Add content to jate object with add method, a key will be generated
     const key = await store.add(content);
 
