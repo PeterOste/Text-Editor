@@ -1,5 +1,5 @@
 # Text Editor
-This is a web-based text editor application that allows users to create and edit text content for a smooth and efficient user experience.
+This is a web-based text editor application that allows users to create and edit text content for a smooth and efficient user experience. The application features client-server structure, bundling with Webpack, and IndexedDB integration.
 
 ## Usage
 To start the application, run the following command from the root directory: `npm run start`
