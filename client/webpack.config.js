@@ -18,7 +18,8 @@ module.exports = () => {
       // Generate an HTML file and inject bundles
       new HtmlWebpackPlugin({
         template: './src/index.html',
-        filename: 'index.html',
+        //filename: 'index.html',
+        title: 'J.A.T.E'
       }),
 
       // Inject service worker
@@ -34,8 +35,10 @@ module.exports = () => {
         name: 'Text Editor',
         short_name: 'TE',
         description: 'Create and edit text content',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
         start_url: './',
-        publicPath: './',
+        publicPath: '/',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),

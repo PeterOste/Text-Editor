@@ -25,23 +25,27 @@ export const putDb = async (content) => {
   // Access to jate object within the transaction
   const store = tx.objectStore('jate');
 
-  try {
-    // Remove 'id' property if it exists
-    if ('id' in content) {
-      delete content.id;
-    }
+  const request = store.put({id: 1, value: content});
+  const result = await request;
+  console.log("Saved data to the database", result.value)
 
-    // Add content to jate object with add method, a key will be generated
-    const key = await store.add(content);
+  // try {
+  //   // Remove 'id' property if it exists
+  //   if (content && 'id' in content) {
+  //     delete content.id;
+  //   }
 
-    console.log(`Content added with key: ${key}`);
+  //   // Add content to jate object with add method, a key will be generated
+  //   const key = await store.add(content);
 
-    // Complete transaction
-    await tx.done;
-  } catch (error) {
-    // Error handling
-    console.error('There was an error adding content to the database:', error);
-  }
+  //   console.log(`Content added with key: ${key}`);
+
+  //   // Complete transaction
+  //   await tx.done;
+  // } catch (error) {
+  //   // Error handling
+  //   console.error('There was an error adding content to the database:', error);
+  // }
 };
 
 // Get method
@@ -58,15 +62,19 @@ export const getDb = async () => {
   const store = tx.objectStore('jate');
 
   // Retrieve all data from jate object
-  const request = store.getAll();
+  const request = store.get(1);
 
   // Wait for the request to complete and then store the result in the result variable
   const result = await request;
 
-  console.log('result.value', result);
+  result 
+  ? console.log("data retrieved from database", result.value) 
+  : console.log("data not retrieved from database") 
+  
+  //console.log('result.value', result);
 
   // Return retrieved data as the result
-  return result;
+  return result?.value;
 };
 
 initdb();

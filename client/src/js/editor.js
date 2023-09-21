@@ -26,14 +26,20 @@ export default class {
     // Fall back to localStorage if nothing is stored in indexeddb, and if neither is available, set the value to header.
     getDb().then((data) => {
       console.info('Loaded data from IndexedDB, injecting into editor');
-      this.editor.setValue(data || localData || header);
+      this.editor.setValue(data || localData || header)
+      // Check if the data is a string before setting it
+      // if (typeof data === 'string') {
+      //   this.editor.setValue(data || localData || header);
+      // } else {
+      //   console.error('Data retrieved from IndexedDB is not a valid string:', data);
+      // }
     });
 
     this.editor.on('change', () => {
       localStorage.setItem('content', this.editor.getValue());
     });
 
-    // Save the content of the editor when the editor itself is loses focus
+    // Save the content of the editor when the editor itself loses focus
     this.editor.on('blur', () => {
       console.log('The editor has lost focus');
       putDb(localStorage.getItem('content'));
